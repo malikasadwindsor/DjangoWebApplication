@@ -1,8 +1,8 @@
-{% extends 'myApp/base.html' %}
+{% extends 'myapp/base.html' %}
 {% block title %}About{% endblock %}
-
+{% block myhdg %}Hello World! {% endblock %}
 {% block body_block %}
     <h3>This is an Online Store App</h3>
-{#    <p><a href="{% url 'myApp:index' %}">Index page using URL namespacing</a></p>#}
-{#    <p><a href="/myApp/">Index page using hardcoded URL</a></p>#}
+    {#    <p><a href="/myapp/">Index page (hardcoded URL)</a></p>#}
+    {#    <p><a href="{% url 'myapp:index' %}">Index page (URL name-spacing)</a></p>#}
 {% endblock %}

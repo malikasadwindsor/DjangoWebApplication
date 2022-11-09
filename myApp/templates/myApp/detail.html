@@ -1,7 +1,8 @@
-{% extends 'myApp/base.html' %}
+{% extends 'myapp/base.html' %}
 {% block title %}Detail{% endblock %}
-
+{% block myhdg %}Hello World! {% endblock %}
 {% block body_block %}
+    <body>
     {% if category %}
         <h3>Category Name - {{ category.name }}</h3>
         <h4>Category Warehouse - {{ category.warehouse }}</h4>
@@ -14,5 +15,5 @@
     {% else %}
         <strong>There are no available categories!</strong>
     {% endif %}
-{#    <p><a href="{% url 'myApp:index' %}">Index page</a></p>#}
+    <p><a href="{% url 'myApp:index' %}">Index page</a></p>
 {% endblock %}
