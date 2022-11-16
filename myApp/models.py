@@ -17,6 +17,11 @@ class Product(models.Model):
     stock = models.PositiveIntegerField(default=100)
     available = models.BooleanField(default=True)
     description = models.CharField(max_length=1000, blank=True)
+    interested  = models.PositiveIntegerField(choices=[(1, 'Yes'), (0, 'No')], default=0)
+
+    def refills(self):
+        self.stock += 100
+        self.save()
 
     def __str__(self):
         return 'Product: Category: '+str(self.category.name)+' Name: '+str(self.name)+ \

@@ -1,7 +1,10 @@
+#import libraries
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse
 from .models import Category, Product, Client, Order
-from django.shortcuts import render
+from .forms import OrderForm, InterestForm
+
 
 # Create your views here.
 
@@ -48,3 +51,53 @@ def detail(request, cat_no):
     #     val = '<p>' + str(product.id) + ': ' + str(product) + '</p>'
     #     res_detail.write(val)
     # return res_detail
+
+
+def products(request):
+    prodlist = Product.objects.all().order_by('id')[:10]
+    return render(request, 'myApp/products.html', {'prodlist': prodlist})
+
+def place_order(request):
+    msg = ''
+    prodlist = Product.objects.all()
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            product_name = form.cleaned_data['product']
+            order = form.save(commit=False)
+            if order.num_units <= order.product.stock:
+                order.save()
+                product = Product.objects.get(name=product_name)
+                product.stock = product.stock - order.num_units
+                product.save()
+                msg = 'Your order has been placed successfully.'
+            else:
+                msg = 'We do not have sufficient stock to fill your order !!!'
+                return render(request, 'myApp/order_response.html', {'msg': msg})
+    else:
+        form = OrderForm()
+    return render(request, 'myApp/placeorder.html', {'form': form, 'msg': msg, 'prodlist': prodlist})
+
+def productdetail(request, prod_id):
+    try:
+        msg = ''
+        product = Product.objects.get(id=prod_id)
+        # product = get_object_or_404(Product, pk=prod_id)
+        if request.method == 'GET':
+            form = InterestForm()
+        elif request.method == 'POST':
+            form = InterestForm(request.POST)
+            if form.is_valid():
+                interested = form.cleaned_data['interested']
+                print("Interested: ", interested)
+                if int(interested) == 1:
+                    product.interested += 1
+                    product.save()
+                    print('form is valid')
+                    return redirect(reverse('myApp:index'))
+        # else:
+        #     form = InterestForm()
+        return render(request, 'myApp/productdetail.html', {'form': form, 'msg': msg, 'product': product})
+    except Product.DoesNotExist:
+        msg = 'The requested product does not exist. Please provide correct product id !!!'
+        return render(request, 'myApp/productdetail.html', {'msg': msg})

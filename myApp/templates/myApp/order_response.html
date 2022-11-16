@@ -1,0 +1,8 @@
+{% extends 'myApp/base.html' %}
+{% block title %}Detail{% endblock %}
+{% block myhdg %} Hello World! {% endblock %}
+{% block body_block %}
+    {% if msg %}
+       <h3>{{ msg }}</h3>
+    {% endif %}
+{% endblock %}
