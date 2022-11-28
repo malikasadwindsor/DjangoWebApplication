@@ -1,0 +1,5 @@
+[{"model": "myapp.client", "pk": 2, "fields": {"shipping_address": "123 University Avenue", "city": "Windsor", "province": "ON", "company": "", "interested_in": [1, 2, 3, 4, 5]}},
+  {"model": "myapp.client", "pk": 3, "fields": {"shipping_address": "456 Sunset Avenue", "city": "Windsor", "province": "ON", "company": "", "interested_in": [1, 3]}},
+  {"model": "myapp.client", "pk": 4, "fields": {"shipping_address": "789 King Street", "city": "Calgary", "province": "AB", "company": "", "interested_in": [2, 4]}},
+  {"model": "myapp.client", "pk": 5, "fields": {"shipping_address": "456 Sunset Avenue", "city": "Montreal", "province": "QC", "company": "", "interested_in": [1, 4]}},
+  {"model": "myapp.client", "pk": 6, "fields": {"shipping_address": "987 King Street", "city": "Edmonton", "province": "AB", "company": "", "interested_in": [1]}}]
