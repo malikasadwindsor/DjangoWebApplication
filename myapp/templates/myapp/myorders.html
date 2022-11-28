@@ -1,0 +1,89 @@
+{% extends 'myapp/base.html' %}
+
+{% block myhdg %}
+    Hello {{ user.username }}
+{% endblock %}
+
+{% block body_block %}
+
+{% if msg %}
+    {% if order %}
+
+    <div class="title">
+        <h3>Please find below your orders</h3>
+    </div>
+
+    <div class="col-4 py-4">
+
+        <div class="order_list">
+            {% for order_var in order %}
+                <p class="text-custom-two fw-bold text-decoration-underline">Order #{{ forloop.counter }}</p>
+                <p class="mb-0">
+                    <span class="text-custom-two fw-bold">Id:</span>
+                    <a href="{% url 'myapp:index' %}">{{ order_var.id }}</a>
+                </p>
+                <p class="mb-0">
+                    <span class="text-custom-two fw-bold">Product:</span>
+                    <a href="{% url 'myapp:index' %}">{{ order_var.product }}</a>
+                </p>
+                <p class="mb-0">
+                    <span class="text-custom-two fw-bold">Quantity:</span>
+                    <a href="{% url 'myapp:index' %}">{{ order_var.num_units }}</a>
+                </p>
+                <p class="mb-0">
+                    <span class="text-custom-two fw-bold">Total Price:</span>
+                    <a href="{% url 'myapp:index' %}">{{ order_var.printx }}</a>
+                </p>
+                <p class="mb-0">
+                    <span class="text-custom-two fw-bold">Order Status:</span>
+                    <a href="{% url 'myapp:index' %}">{{ order_var.order_status }}</a>
+                </p>
+                <p class="mb-0">
+                    <span class="text-custom-two fw-bold">Last Status Change Date:</span>
+                    <a href="{% url 'myapp:index' %}">{{ order_var.status_date }}</a>
+                </p>
+                <hr />
+            {% endfor %}
+        </div>
+
+    </div>
+{##}
+{#        <h2>Order List</h2>#}
+{#        <ol>#}
+{#            {% for order_var in order %}#}
+{#                <table>#}
+{#                    <tr>#}
+{#                        <td>Order ID: </td>#}
+{#                        <td>{{ order_var.id }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td>Product: </td>#}
+{#                        <td>{{ order_var.product }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td>Quantity: </td>#}
+{#                        <td>{{ order_var.num_units }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td>Total Price: </td>#}
+{#                        <td>{{ order_var.printx }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td>Order Status: </td>#}
+{#                        <td>{{ order_var.order_status }}</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td>Last Status Changed Date: </td>#}
+{#                        <td>{{ order_var.status_date }}</td>#}
+{#                    </tr>#}
+{#                </table>#}
+{##}
+{#            {% endfor %}#}
+{#        </ol>#}
+    {% else %}
+        <div class="fw-bold text-center my-5">
+            <p>{{ msg }}</p>
+        </div>
+    {% endif %}
+{% endif %}
+{% endblock %}

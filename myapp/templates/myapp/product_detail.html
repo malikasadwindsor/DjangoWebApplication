@@ -1,0 +1,61 @@
+{% extends 'myapp/base.html' %}
+
+{% block myhdg %}
+
+    Hello {{ user.username }}
+
+{% endblock %}
+
+{% block body_block %}
+
+    <p class="mb-0">
+        <span class="text-custom-two fw-bold">Product Name:</span>
+        <span>{{ prod.name }}</span>
+    </p>
+    <p class="mb-0">
+        <span class="text-custom-two fw-bold">Interested:</span>
+        <span>{{ prod.interested }}</span>
+    </p>
+    <p class="mb-0">
+        <span class="text-custom-two fw-bold">Price:</span>
+        <span>{{ prod.price }}</span>
+    </p>
+    <p class="mb-0">
+        <span class="text-custom-two fw-bold">Available:</span>
+        <span>
+            {% if prod.available %}
+                Yes
+            {% else %}
+                No
+            {% endif %}
+        </span>
+    </p>
+
+    <div class="col-4 offset-4 p-5">
+
+        <div class="title text-center mb-4">
+            <h3>Interested in <span class="text-custom-two">{{ prod.name }}</span>?</h3>
+        </div>
+
+        <div class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <div class="form-button my-2 text-center">
+                    <button class="btn btn-light" type="submit" value="Submit">Submit</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+{##}
+{#<h2>Interested in {{ prod.name }}?</h2>#}
+{##}
+{#<form method="post">#}
+{#    {% csrf_token %}#}
+{#    {{ form }}#}
+{#    <button class="btn btn-primary" type="submit" value="Submit">Submit</button>#}
+{#</form>#}
+
+{% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Online Store APP - {% block title %}Welcome!{% endblock %}</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" >
+        <link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}"/>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </head>
+    <body class="bg-custom">
+        <div class="container text-white">
+            <div class="col-12">
+                <div class="header my-5">
+                    <div class="title text-custom-two text-capitalize text-center my-3">
+                        <h1>{% block myhdg %} Hello {{ user.username }} {% endblock %}</h1>
+                    </div>
+                    {% block body_block %}*** {% endblock %}
+                </div>
+            <hr />
+            <div class="footer text-center py-3">
+                <div class="main-links">
+                    <a class="mx-2" href="{% url 'myapp:about' %}">About</a>
+                    <span>|</span>
+                    <a class="mx-2" href="{% url 'myapp:products' %}">Products</a>
+                    <span>|</span>
+                    <a class="mx-2" href ="{% url 'myapp:index' %}">Home</a>
+                </div>
+                {% if user.username == '' %}
+                <div class="sub-links">
+                    <a class="mx-2" href ="{% url 'myapp:register'%}">Register</a>
+                    <span>|</span>
+                    <a class="mx-2" href="{% url 'myapp:login' %}">Login</a>
+                    <span>|</span>
+                    <a class="mx-2" href="{% url 'myapp:my_order' %}">My Orders</a>
+                {% else %}
+                    <a class="mx-2" href="{% url 'myapp:my_order' %}">My Orders</a>
+                    <span>|</span>
+                    <a class="mx-2" href="{% url 'myapp:logout' %}">Logout</a>
+                </div>
+                {% endif %}
+
+                <div class="copyrights text-center py-3">&copy; Matrix 2022 | All Rights Reserved</div>
+            </div>
+        </div>
+    </body>
+</html>

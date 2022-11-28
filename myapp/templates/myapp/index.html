@@ -1,0 +1,39 @@
+{% extends 'myapp/base.html' %}
+
+{% block myhdg %}
+
+    {% if user %}
+        Hello {{ user.username }}
+        <img src="{{ user.image.url }}" style="max-height:300px" />
+    {% endif %}
+
+{% endblock %}
+
+{% block body_block %}
+
+    {% if cat_list %}
+        <div class="sub-container">
+            <div class="title mb-4">
+                <h2 class="text-decoration-underline">List of Categories</h2>
+            </div>
+            <div class="list">
+                <ol>
+                    {% for cat in cat_list %}
+                        <li> <a href="{% url 'myapp:detail' cat.id %}">{{ cat.name}}</a> </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+        {#<p><a href="{% url 'myapp:about' %}">About page</a></p>#}
+    {% else %}
+        <div class="none-found text-center">
+            <p class="fw-bold">There are no available categories.</p>
+        </div>
+        {#<p><a href="{% url 'myapp:about' %}">About page</a></p>#}
+    {% endif %}
+
+    {% if msg %}
+        <p class="my-5 text-end">{{ msg | safe }}</p>
+    {% endif %}
+
+{% endblock %}

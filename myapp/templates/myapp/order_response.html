@@ -1,0 +1,13 @@
+{% extends 'myapp/base.html' %}
+
+{% block myhdg %}
+    Hello {{ user.username }}
+{% endblock %}
+
+{% block body_block %}
+    {% if msg %}
+        <div class="fw-bold text-center">
+            <p>{{ msg }}</p>
+        </div>
+    {% endif %}
+{% endblock %}

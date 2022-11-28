@@ -1,0 +1,44 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+
+    Login
+
+{% endblock %}
+
+{% block myhdg %}
+
+{% endblock %}
+
+{% block body_block %}
+
+    {% if msg %}
+        {{ msg }}
+    {% endif %}
+
+    <div class="col-4 offset-4 p-5">
+
+        <div class="title text-center mb-4">
+            <h3 class="text-custom-two">Login</h3>
+        </div>
+
+        <div class="form-container">
+
+            <form method="post">
+
+                {% csrf_token %}
+                {{ form }}
+                <div class="form-button my-2 text-center">
+                    <button class="btn btn-light" type="submit" value="Submit">Submit</button>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="anchor-container mt-5 text-center">
+            <a href="forgot">Forgot Password?</a>
+        </div>
+
+    </div>
+
+{% endblock %}

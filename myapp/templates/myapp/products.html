@@ -1,0 +1,33 @@
+{% extends 'myapp/base.html' %}
+
+{% block myhdg %}
+
+    Hello {{ user.username }}
+
+{% endblock %}
+
+{% block body_block %}
+    {% if prodlist %}
+        <div class="sub-container">
+            <div class="title mb-4">
+                <h2 class="text-decoration-underline">Available products</h2>
+            </div>
+            <div class="list">
+                <ol>
+                    {% for prod in prodlist %}
+                        {% if prod.available %}
+                            <li><a href="{% url 'myapp:product_detail' prod.id %}"> {{ prod }} - {{ prod.price }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+
+    {% else %}
+        <p class="fw-bold text-center">There are no available products!</p>
+    {% endif %}
+
+    <div clas="btn-container">
+        <a class="btn btn-light" href="{% url 'myapp:place_order' %}">Place Order</a>
+    </div>
+{% endblock %}

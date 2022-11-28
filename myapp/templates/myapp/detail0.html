@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Online Store APP</title>
+</head>
+<body>
+
+    {% if category %}
+        <h1>Category: {{ category.name}}</h1>
+        <h1>Warehouse: {{ category.warehouse }} </h1>
+    {% endif %}
+
+    {% if prod_list %}
+        <h1>List of products:</h1>
+        <ol>
+            {% for prod in prod_list %}
+            <li> {{ prod.id}}: {{ prod }}- {{ prod.price }} </li>
+            {% endfor %}
+        </ol>
+
+        <p><a href="{% url 'myapp:index' %}">Index page</a></p>
+    {% else %}
+        <strong>There are no products available for this category!</strong>
+
+        <p><a href="{% url 'myapp:index' %}">Index page</a></p>
+    {% endif %}
+
+</body>
+</html>

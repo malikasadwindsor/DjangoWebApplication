@@ -1,0 +1,45 @@
+{% extends 'myapp/base.html' %}
+
+{% block myhdg %}
+
+    Hello {{ user.username }}
+
+{% endblock %}
+
+{% block title %}
+
+    Detail
+
+{% endblock %}
+
+{% block body_block %}
+
+    {% if category %}
+        <div class="category-main">
+            <p class="mb-0">
+                <span class="text-custom-two fw-bold">Category: </span>
+                {{ category.name}}
+            </p>
+            <p>
+                <span class="text-custom-two fw-bold">Warehouse: </span>
+                {{ category.warehouse }}
+            </p>
+        </div>
+    {% endif %}
+
+    {% if prod_list %}
+        <h4 class="text-decoration-underline my-4">List of products</h4>
+        <ol>
+            {% for prod in prod_list %}
+                <li><a href="{% url 'myapp:product_detail' prod.id %}">{{ prod }} - {{ prod.price }} <span class="fst-italic">(Id: {{ prod.id}})</span></a></li>
+            {% endfor %}
+        </ol>
+
+        {#<p><a href="{% url 'myapp:index' %}">Index page</a></p>#}
+    {% else %}
+        <strong>There are no products available for this category!</strong>
+
+        {#<p><a href="{% url 'myapp:index' %}">Index page</a></p>#}
+    {% endif %}
+
+{% endblock %}
